@@ -1,6 +1,7 @@
 import utils
 
-data = utils.get_data(1)
+# input is a single line
+data = list(utils.get_data(1))[0]
 datalen = len(data)
 
 counter = sum(int(x) for i, x in enumerate(data)
