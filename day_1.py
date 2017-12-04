@@ -1,4 +1,4 @@
-import utils
+from utils import utils
 
 # input is a single line
 data = list(utils.get_data(1))[0]

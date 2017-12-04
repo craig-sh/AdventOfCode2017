@@ -1,4 +1,4 @@
-import utils
+from utils import utils
 
 cleansed = [utils.tab_split(raw_line, int) for raw_line in utils.get_data(2)]
 
