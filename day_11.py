@@ -18,7 +18,7 @@ origin = HexPoint(0, 0, 0)
 location = HexPoint(0, 0, 0)
 max_dist = cur_dist = 0
 final_distance: int
-for i, step in enumerate(steps):
+for step in steps:
     location += DMAP[step]
     cur_dist = location.distance(origin)
     max_dist = max(max_dist, cur_dist)
