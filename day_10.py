@@ -30,6 +30,18 @@ def apply_knot(list_, lengths, num_rounds=1):
         skip_size += 1
 
 
+def get_knot_hash(value: str):
+    lengths = [ord(x) for x in value if x]
+    lengths += STANDARD_SUFFIX
+    list_ = list(range(COUNT))
+    apply_knot(list_, lengths, num_rounds=64)
+    dense = [reduce(xor, list_[n: n + 16])
+             for n in range(0, COUNT, 16)]
+    hexes = [f'{x:02x}' for x in dense]
+    output = ''.join(hexes)
+    return output
+
+
 def part_1():
     comma_sep = data.split(',')
     lengths = [int(x.strip()) for x in comma_sep if x.strip()]
@@ -40,14 +52,8 @@ def part_1():
 
 
 def part_2():
-    lengths = [ord(x.strip()) for x in data if x.strip()]
-    lengths += STANDARD_SUFFIX
-    list_ = list(range(COUNT))
-    apply_knot(list_, lengths, num_rounds=64)
-    dense = [reduce(xor, list_[n: n + 16])
-             for n in range(0, COUNT, 16)]
-    hexes = [f'{x:02x}' for x in dense]
-    output = ''.join(hexes)
+    value = [x.strip() for x in data if x.strip()]
+    output = get_knot_hash(value)
     print(f'Part 2: {output}')
 
 
