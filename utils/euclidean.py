@@ -23,8 +23,23 @@ class Vector(Point):
     pass
 
 
-NORTH = Vector(0, 1)
-SOUTH = Vector(0, -1)
+class Grid:
+    def __init__(self, grid):
+        self.grid = grid
+
+    def __getitem__(self, key):
+        if isinstance(key, Point):
+            return self.grid[key.y][key.x]
+        return self.grid[key]
+
+    def get(self, point, default=None):
+        try:
+            return self.__getitem__(point)
+        except IndexError:
+            return default
+
+NORTH = Vector(0, -1)
+SOUTH = Vector(0, 1)
 EAST = Vector(1, 0)
 WEST = Vector(-1, 0)
 NORTH_WEST = Vector(1, -1)
